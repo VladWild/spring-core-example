@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--реализации отправщиков-->
+    <bean id="emailSender" class="com.spring.example.sendler.impl.EmailSender"/>
+    <bean id="pushSender" class="com.spring.example.sendler.impl.PushSender"/>
+    <bean id="smsSender" class="com.spring.example.sendler.impl.SmsSender"/>
+
+    <!--NotificationService-->
+    <bean id="notificationService" class="com.spring.example.service.NotificationService">
+        <constructor-arg name="emailSender" ref="emailSender"/>
+        <constructor-arg name="smsSender" ref="smsSender"/>
+        <property name="pushSender" ref="pushSender"/>
+    </bean>
+
+</beans>
+
+
+
